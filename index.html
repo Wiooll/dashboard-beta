@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel de Controle Financeiro</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            background-color: #f0f2f5;
+        }
+        #sidebar {
+            min-width: 250px;
+            max-width: 250px;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+        }
+        #content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+        .card {
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .nav-link {
+            color: #333;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+        .nav-link:hover {
+            background-color: #f8f9fa;
+        }
+        .nav-link.active {
+            background-color: #007bff;
+            color: white;
+        }
+        #login-box {
+            max-width: 400px;
+            margin: 100px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .transaction-form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+            padding: 10px 20px;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="sidebar">
+        <h2 class="mb-4">Menu</h2>
+        <ul class="nav flex-column">
+            <li class="nav-item">
+                <a class="nav-link active" href="#"><i class="fas fa-home mr-2"></i>Painel</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-chart-bar mr-2"></i>Relatórios</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-wallet mr-2"></i>Transações</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-cog mr-2"></i>Configurações</a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="content">
+        <div class="transaction-form">
+            <h4 class="mb-4">Nova Transação</h4>
+            <form id="transactionForm">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="description">Descrição</label>
+                        <input type="text" class="form-control" id="description" required>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="amount">Valor</label>
+                        <input type="number" class="form-control" id="amount" step="0.01" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="type">Tipo</label>
+                        <select class="form-control" id="type" required>
+                            <option value="receita">Receita</option>
+                            <option value="despesa">Despesa</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="category">Categoria</label>
+                        <select class="form-control" id="category" required>
+                            <option value="salario">Salário</option>
+                            <option value="investimentos">Investimentos</option>
+                            <option value="alimentacao">Alimentação</option>
+                            <option value="transporte">Transporte</option>
+                            <option value="moradia">Moradia</option>
+                            <option value="lazer">Lazer</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label for="date">Data</label>
+                        <input type="date" class="form-control" id="date" required>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Adicionar Transação</button>
+            </form>
+        </div>
+
+        <div id="dashboard-content">
+            <!-- O conteúdo do dashboard será carregado dinamicamente via JavaScript -->
+        </div>
+    </div>
+
+    <div class="container" id="login-box" style="display: none;">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h5 class="card-title mb-0">Autenticação de usuário</h5>
+            </div>
+            <div class="card-body">
+                <p>Insira seu nome de usuário e senha para acessar o painel de controle financeiro.</p>
+                <form>
+                    <div class="form-group">
+                        <label for="username">Nome de usuário</label>
+                        <input type="text" class="form-control" id="username" placeholder="Digite seu nome de usuário">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Senha</label>
+                        <input type="password" class="form-control" id="password" placeholder="Digite sua senha">
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Entrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
